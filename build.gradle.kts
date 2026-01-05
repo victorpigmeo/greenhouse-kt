@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.5.9"
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("plugin.jpa") version "1.9.25"
+	kotlin("kapt") version "2.0.21"
 }
 
 group = "dev.pigmeo"
@@ -20,11 +21,18 @@ repositories {
 	mavenCentral()
 }
 
+val mapstructVersion = "1.6.3"
+
 dependencies {
 	//Spring
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-security")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	// mapstruct
+	implementation("org.mapstruct:mapstruct:$mapstructVersion")
+	kapt("org.mapstruct:mapstruct-processor:$mapstructVersion")
 
 	//Postgres
 	runtimeOnly("org.postgresql:postgresql")
