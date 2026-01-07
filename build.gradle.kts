@@ -9,7 +9,7 @@ plugins {
 
 group = "dev.pigmeo"
 version = "0.0.1-SNAPSHOT"
-description = "Greenhouse control "
+description = "Greenhouse control"
 
 java {
 	toolchain {
@@ -21,27 +21,45 @@ repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.1")
+		mavenBom("io.github.resilience4j:resilience4j-bom:2.3.0")
+	}
+}
+
 val mapstructVersion = "1.6.3"
+val resilience4jVersion = "2.3.0"
 
 dependencies {
-	//Spring
+	// Spring
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
 
-	// mapstruct
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+	// Resilience4j
+	implementation("io.github.resilience4j:resilience4j-spring-boot3:${resilience4jVersion}")
+
+	// Mapstruct
 	implementation("org.mapstruct:mapstruct:$mapstructVersion")
 	kapt("org.mapstruct:mapstruct-processor:$mapstructVersion")
 
-	//Postgres
+	// Postgres
 	runtimeOnly("org.postgresql:postgresql")
 
-	//Other
+	// Other
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-	//Tests
+	// Tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")

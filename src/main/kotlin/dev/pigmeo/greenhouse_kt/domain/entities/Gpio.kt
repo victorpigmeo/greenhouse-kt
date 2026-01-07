@@ -3,15 +3,15 @@ package dev.pigmeo.greenhouse_kt.domain.entities
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 
-enum class GpioState {
-    ZERO,
-    ONE,
-    PRESSED
+enum class GpioState(val value: String) {
+    ZERO("0"),
+    ONE("1"),
+    PRESSED("pressed")
 }
 
-enum class GpioType {
-    SWITCH,
-    BUTTON
+enum class GpioType(val value: String) {
+    SWITCH("set"),
+    BUTTON("button")
 }
 
 @Entity
@@ -25,7 +25,7 @@ class Gpio(
     @field:Column(name = "state", nullable = false)
     var state: GpioState
 ) : PersistentEntity<Long>() {
-    fun use(): Gpio{
+    fun use() {
         when (this.type){
             GpioType.SWITCH -> {
                 if(this.state == GpioState.ZERO){
@@ -38,7 +38,5 @@ class Gpio(
                 this.state = GpioState.PRESSED
             }
         }
-
-        return this
     }
 }
