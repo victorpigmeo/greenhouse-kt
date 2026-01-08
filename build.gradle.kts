@@ -30,6 +30,7 @@ dependencyManagement {
 
 val mapstructVersion = "1.6.3"
 val resilience4jVersion = "2.3.0"
+val loggerVersion = "7.0.3"
 
 dependencies {
 	// Spring
@@ -54,6 +55,9 @@ dependencies {
 
 	// Postgres
 	runtimeOnly("org.postgresql:postgresql")
+
+	//Logger
+	implementation("io.github.oshai:kotlin-logging-jvm:$loggerVersion")
 
 	// Other
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
