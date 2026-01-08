@@ -1,0 +1,24 @@
+meta {
+  name: POST Gpio
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/gpio
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "pin": "10",
+    "type": "SWITCH",
+    "state": "ZERO"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
