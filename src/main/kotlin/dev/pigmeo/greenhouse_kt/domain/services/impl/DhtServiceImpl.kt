@@ -13,7 +13,6 @@ class DhtServiceImpl(
 ): DhtService {
 
     override fun getLiveDhtRead(): DhtRead {
-        return dhtMapper.mapToDomain(
-            espClient.getDhtRead())
+        return dhtMapper.mapToDomain(espClient.getDhtRead())
     }
 }

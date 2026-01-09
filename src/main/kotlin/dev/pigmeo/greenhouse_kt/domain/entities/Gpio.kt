@@ -25,7 +25,6 @@ class Gpio(
     @field:Column(name = "state", nullable = false)
     var state: GpioState,
 ) : PersistentEntity<Long>() {
-
     fun use() {
         when (this.type){
             GpioType.SWITCH -> {

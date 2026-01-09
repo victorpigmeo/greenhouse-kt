@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/dht")
 class DhtController(
     private val dhtMapper: DhtMapper,
-    private val dhtService: DhtService
+    private val dhtService: DhtService,
 ) {
     @GetMapping("/live")
     fun getLiveDhtRead(): ResponseEntity<DhtReadDtoOut> {
