@@ -6,6 +6,7 @@ import dev.pigmeo.greenhouse_kt.application.payloads.DhtReadEspDtoIn
 import dev.pigmeo.greenhouse_kt.infrastructure.repository.DhtRepository
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 
 @Component
 class DhtScheduler(
@@ -14,6 +15,7 @@ class DhtScheduler(
     private val dhtRepository: DhtRepository
 ) {
 
+    @Transactional
     @Scheduled(initialDelay = 0, fixedDelay = 60000)
     fun getLiveDhtRead() {
         val dhtRead: DhtReadEspDtoIn = this.espClient.getDhtRead()

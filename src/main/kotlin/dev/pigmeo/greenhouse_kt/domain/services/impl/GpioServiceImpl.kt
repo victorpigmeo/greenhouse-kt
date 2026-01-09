@@ -6,6 +6,7 @@ import dev.pigmeo.greenhouse_kt.domain.entities.Gpio
 import dev.pigmeo.greenhouse_kt.domain.services.GpioService
 import dev.pigmeo.greenhouse_kt.infrastructure.repository.GpioRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import kotlin.jvm.optionals.getOrNull
 
 @Service
@@ -18,10 +19,12 @@ class GpioServiceImpl(
         return gpioRepository.findAll()
     }
 
+    @Transactional
     override fun newGpio(gpio: Gpio): Gpio {
         return this.gpioRepository.save(gpio)
     }
 
+    @Transactional
     override fun useGpio(gpioId: Long): Gpio {
         val gpio = this.gpioRepository.findById(gpioId).getOrNull()
             ?: throw RuntimeException("Gpio with id $gpioId was not found on the database")
