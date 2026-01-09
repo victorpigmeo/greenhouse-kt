@@ -2,7 +2,7 @@ spring:
   application:
     name: greenhouse-kt
   datasource:
-    url: jdbc:postgresql://${DATABASE_URL:localhost:5432/greenhouse-kt}
+    url: jdbc:postgresql://${GREENHOUSE_DATABASE_URL:localhost:5432/greenhouse-kt}
     username: ${GREENHOUSE_DB_USER}
     password: ${GREENHOUSE_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -12,4 +12,18 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+    show-sql: false
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      esp-dht:
+        register-health-indicator: true
+        sliding-window-size: 8
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30000
+
+greenhouse:
+  jwt:
+    secret: ${GREENHOUSE_JWT_SECRET}
+    expiration-seconds: 3600
