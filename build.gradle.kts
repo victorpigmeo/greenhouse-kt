@@ -1,10 +1,11 @@
 plugins {
-	kotlin("jvm") version "1.9.25"
+	kotlin("jvm") version "2.3.0"
 	kotlin("plugin.spring") version "1.9.25"
 	id("org.springframework.boot") version "3.5.9"
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("plugin.jpa") version "1.9.25"
 	kotlin("kapt") version "2.0.21"
+	id("org.graalvm.buildtools.native") version "0.10.2"
 }
 
 group = "dev.pigmeo"
@@ -72,6 +73,7 @@ dependencies {
 }
 
 kotlin {
+	jvmToolchain(21)
 	compilerOptions {
 		freeCompilerArgs.addAll("-Xjsr305=strict")
 	}

@@ -11,10 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails
 @Table(name = "users")
 class User(
     @field:Column(unique = true, nullable = false)
-    private val username: String,
+    private var username: String,
 
     @field:Column(nullable = false)
-    private val password: String,
+    private var password: String,
 ) : PersistentEntity<Long>(), UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority?> =
         listOf(SimpleGrantedAuthority("ROLE_USER"))

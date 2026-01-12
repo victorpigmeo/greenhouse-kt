@@ -6,11 +6,11 @@ import jakarta.persistence.Entity
 @Entity
 class DhtRead(
     @field:Column(nullable = false)
-    val temperature: Float,
+    var temperature: Float,
 
     @field:Column(nullable = false)
-    val humidity: Float,
+    var humidity: Float,
 
     @field:Column(nullable = false)
-    val heatIndex: Float,
+    var heatIndex: Float,
 ): PersistentEntity<Long>()

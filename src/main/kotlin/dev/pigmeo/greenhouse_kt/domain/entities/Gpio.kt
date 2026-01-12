@@ -17,10 +17,10 @@ enum class GpioType(val value: String) {
 @Entity
 class Gpio(
     @field:Column(name = "pin", nullable = false, unique = true)
-    val pin: Byte,
+    var pin: Byte,
 
     @field:Column(name = "type", nullable = false)
-    val type: GpioType,
+    var type: GpioType,
 
     @field:Column(name = "state", nullable = false)
     var state: GpioState,
