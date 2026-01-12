@@ -11,8 +11,9 @@ jobs:
         include:
           - arch: amd64
             os-label: X64
-          - arch: arm64
-            os-label: ARM64
+            #TODO: Add raspberypi as cluster node
+#          - arch: arm64
+#            os-label: ARM64
     runs-on: [self-hosted, "${{ matrix.os-label }}"]
 
     steps:
