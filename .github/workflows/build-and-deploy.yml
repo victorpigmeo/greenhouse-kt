@@ -13,7 +13,6 @@ jobs:
             os-label: X64
           - arch: arm64
             os-label: ARM64
-
     runs-on: [self-hosted, ${{ matrix.os-label }}]
 
     steps:
