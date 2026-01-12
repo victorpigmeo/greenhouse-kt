@@ -1,5 +1,6 @@
 #Stage 1: Build
 FROM ghcr.io/graalvm/native-image-community:21 AS builder
+RUN microdnf install findutils -y
 
 WORKDIR /app
 
@@ -9,7 +10,7 @@ COPY build.gradle.kts .
 COPY settings.gradle.kts .
 RUN chmod +x ./gradlew
 
-COPY . .
+COPY src src
 RUN ./gradlew nativeCompile --no-daemon --scan
 
 #Stage 2: Create final image with only runtime and the jar
