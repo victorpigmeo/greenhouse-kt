@@ -1,6 +1,5 @@
 #Stage 1: Build
 FROM ghcr.io/graalvm/native-image-community:21 AS builder
-RUN microdnf install findutils gcc glibc-devel zlib-devel -y
 
 WORKDIR /app
 
