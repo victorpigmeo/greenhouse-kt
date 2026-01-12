@@ -4,6 +4,7 @@ RUN microdnf install findutils -y
 
 WORKDIR /app
 COPY --chown=graalvm:graalvm . /app
+RUN chmod +x ./gradlew
 RUN ./gradlew nativeCompile --no-daemon --scan
 
 #Stage 2: Create final image with only runtime and the jar
