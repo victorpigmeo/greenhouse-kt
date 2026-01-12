@@ -38,8 +38,9 @@ jobs:
       - name: Create multi-arch manifest
         run: |
           docker buildx imagetools create -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:latest\
-          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:amd64 \
-          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:arm64
+          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:amd64
+#          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:arm64
+          # TODO: Raspbery as cluster node
 
       - name: Deploy to kubernetes
         run: |
