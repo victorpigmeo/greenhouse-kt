@@ -4,35 +4,47 @@ on:
   push:
     branches: ["master"]
 
-env:
-  IMAGE_NAME: "greenhouse-kt"
-
 jobs:
   build:
     strategy:
-      fail-fast: false
       matrix:
         include:
           - arch: amd64
-            runner: greenhouse-kt-runner
-            platform: linux/amd64
+            os-label: X64
           - arch: arm64
-            runner: greenhouse-kt-runner
-            platform: linux/arm64
-    runs-on: ${{ matrix.runner }}
-    permissions:
-      contents: read
-      packages: write
+            os-label: ARM64
+
+    runs-on: [self-hosted, ${{ matrix.os-label }}]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build and push to internal cluster registry
-        run: |
-          docker buildx build --platform ${{matrix.platform}} --network=host -t 127.0.0.1:5000/greenhouse-app:latest -f ./Dockerfile.native .
-          docker push registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Deploy
+      - name: Build Native binary
+        run: ./gradlew nativeCompile
+
+      - name: Build and push image
         run: |
-          kubectl rollout restart deployment/greenhouse-app -n greenhouse --create-namespace
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }} .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/kotlin-app:${{ matrix.arch }}
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, X64] #This one runs on the ubuntu server
+    steps:
+      - name: Create multi-arch manifest
+        run: |
+          docker buildx imagetools create -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:latest\
+          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:amd64 \
+          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:arm64
+
+      - name: Deploy to kubernetes
+        run: |
+          kubectl apply -f k8s/
+          kubectl rollout restart deployment/greenhouse-kt

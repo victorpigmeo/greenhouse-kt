@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greenhouse-kt
+  labels:
+    app: greenhouse-kt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: greenhouse-kt
+  template:
+    metadata:
+      labels:
+        app: greenhouse-kt
+    spec:
+      containers:
+        - name: greenhouse-kt
+          image: victorblq/greenhouse-kt:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
