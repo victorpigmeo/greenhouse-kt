@@ -14,9 +14,7 @@ COPY src src
 RUN ./gradlew nativeCompile --no-daemon --scan
 
 #Stage 2: Create final image with only runtime and the jar
-FROM gcr.io/distroless/cc-debian12
-#Add zlib and C libraries
-RUN apt-get update && apt-get install -y zlib1g libc6 && rm -rf /var/lib/apt/lists/*
+FROM gcr.io/distroless/base-debian12
 
 WORKDIR /app
 #Copy the binary compiled from the builder stage
