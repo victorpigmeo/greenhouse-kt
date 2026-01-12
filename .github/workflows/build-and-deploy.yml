@@ -35,11 +35,6 @@ jobs:
           distribution: 'graalvm'
           cache: 'gradle'
 
-      - name: Build with gradle
-        run: |
-          chmod +x ./gradlew
-          ./gradlew bootBuildImage
-
       - name: Build and push to internal cluster registry
         run: |
           docker buildx build --platform -t registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest -f ./Dockerfile.native .
