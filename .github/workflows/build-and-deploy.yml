@@ -28,7 +28,7 @@ jobs:
 
       - name: Build and push image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }} .
+          docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }} .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }}
 
   deploy:
