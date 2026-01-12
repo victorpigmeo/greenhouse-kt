@@ -30,7 +30,7 @@ jobs:
 
       - name: Build and push to internal cluster registry
         run: |
-          docker buildx build -t registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest -f ./Dockerfile.native .
+          docker buildx build --network=host -t registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest -f ./Dockerfile.native .
           docker push registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest
 
       - name: Deploy
