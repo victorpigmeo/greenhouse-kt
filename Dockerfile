@@ -19,7 +19,7 @@ WORKDIR /app
 #Copy the binary compiled from the builder stage
 COPY --from=builder /app/build/native/nativeCompile/* /app/greenhouse-kt
 #Add execute permission to the binary
-RUN chmod +x /app/greenhouse-kt
+RUN chmod +x ./app/greenhouse-kt
 
 EXPOSE 8080
 ENTRYPOINT ["/app/greenhouse-kt"]
