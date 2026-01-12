@@ -85,6 +85,12 @@ allOpen {
 	annotation("jakarta.persistence.Embeddable")
 }
 
+graalvmNative {
+	binaries.all {
+		buildArgs.add("--gc=G1")
+	}
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
