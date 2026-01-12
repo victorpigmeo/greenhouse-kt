@@ -36,10 +36,10 @@ jobs:
     runs-on: [self-hosted, X64] #This one runs on the ubuntu server
     steps:
           # TODO: Raspbery as cluster node
-#      - name: Create multi-arch manifest
-#        run: |
-#          docker buildx imagetools create -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:latest\
-#          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:amd64\
+      - name: Create multi-arch manifest
+        run: |
+          docker buildx imagetools create -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:latest \
+          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:amd64 \
 #          ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:arm64
 
       - name: Deploy to kubernetes
