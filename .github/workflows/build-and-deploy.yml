@@ -14,10 +14,10 @@ jobs:
       matrix:
         include:
           - arch: amd64
-            runner: arc-amd64-runner
+            runner: greenhouse-kt-runner
             platform: linux/amd64
           - arch: arm64
-            runner: arc-arm64-runner
+            runner: greenhouse-kt-runner
             platform: linux/arm64
     runs-on: ${{ matrix.runner }}
     permissions:
