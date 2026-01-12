@@ -38,7 +38,7 @@ jobs:
       - name: Build with gradle
         run: |
           chmod +x ./gradlew
-          ./gradlew nativeCompile
+          ./gradlew bootBuildImage
 
       - name: Build and push to internal cluster registry
         run: |
