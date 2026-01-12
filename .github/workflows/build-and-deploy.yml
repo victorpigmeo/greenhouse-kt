@@ -13,7 +13,7 @@ jobs:
             os-label: X64
           - arch: arm64
             os-label: ARM64
-    runs-on: [self-hosted, ${{ matrix.os-label }}]
+    runs-on: [self-hosted, "${{ matrix.os-label }}"]
 
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
       - name: Build and push image
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }} .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/kotlin-app:${{ matrix.arch }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }}
 
   deploy:
     needs: build
