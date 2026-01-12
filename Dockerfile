@@ -17,9 +17,8 @@ RUN ./gradlew nativeCompile --no-daemon --scan
 FROM gcr.io/distroless/cc-debian12
 WORKDIR /app
 #Copy the binary compiled from the builder stage
-COPY --from=builder /app/build/native/nativeCompile/* /app/greenhouse-kt
 #Add execute permission to the binary
-RUN chmod +x ./app/greenhouse-kt
+COPY --from=builder --chmod=755 /app/build/native/nativeCompile/* /app/greenhouse-kt
 
 EXPOSE 8080
 ENTRYPOINT ["/app/greenhouse-kt"]
