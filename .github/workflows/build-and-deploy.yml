@@ -26,7 +26,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Native binary
-        run: ./gradlew nativeCompile
+        run: |
+          chmod +x ./gradlew
+          ./gradlew nativeCompile
 
       - name: Build and push image
         run: |
