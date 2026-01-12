@@ -87,7 +87,7 @@ allOpen {
 
 graalvmNative {
 	binaries.all {
-		buildArgs.add("--gc=G1")
+		buildArgs.add("--gc=epsilon")
 	}
 }
 
