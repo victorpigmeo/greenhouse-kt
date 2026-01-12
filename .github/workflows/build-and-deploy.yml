@@ -28,15 +28,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup http registry
-        run: |
-          sudo mkdir -p /etc/docker
-          echo '{ "insecure-registries": ["registry.arc-systems.svc.cluster.local:5000"] }' | sudo tee /etc/docker/daemon.json
-          sudo systemctl restart docker
-
       - name: Build and push to internal cluster registry
         run: |
-          docker buildx build --network=host -t registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest -f ./Dockerfile.native .
+          docker buildx build --platform ${{matrix.platform}} --network=host -t 127.0.0.1:5000/greenhouse-app:latest -f ./Dockerfile.native .
           docker push registry.arc-systems.svc.cluster.local:5000/greenhouse-app:latest
 
       - name: Deploy
