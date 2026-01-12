@@ -32,11 +32,13 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 21
-          distribution: 'temurin'
+          distribution: 'graalvm'
           cache: 'gradle'
 
       - name: Build with gradle
-        run: ./gradlew nativeCompile
+        run: |
+          chmod +x ./gradlew
+          ./gradlew nativeCompile
 
       - name: Build and push to internal cluster registry
         run: |
