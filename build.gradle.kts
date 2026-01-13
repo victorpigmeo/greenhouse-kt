@@ -85,13 +85,10 @@ allOpen {
     annotation("jakarta.persistence.Embeddable")
 }
 
-graalvmNative {
-    binaries {
-        named("main") {
-            imageName.set("greenhouse-kt")
-            buildArgs.add("--no-fallback")
-        }
-    }
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootBuildImage>("bootBuildImage") {
+    builder.set("paketobuildpacks/builder-jammy-tiny:latest")
+    environment.set(mapOf("BP_NATIVE_IMAGE" to "true"))
+    imageName.set("docker.io/victorblq/greenhouse-kt:latest")
 }
 
 tasks.withType<Test> {
