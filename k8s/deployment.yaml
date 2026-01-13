@@ -42,5 +42,11 @@ spec:
                   name: db-credentials
                   key: password
 
+            - name: GREENHOUSE_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: jwt-secret-key
+
       imagePullSecrets:
         - name: dockerhub-secret

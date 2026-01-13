@@ -58,5 +58,5 @@ jobs:
 
       - name: Deploy to kubernetes
         run: |
-          kubectl apply -f k8s/
-          kubectl rollout restart deployment/greenhouse-kt
+          kubectl apply -f k8s/ -n greenhouse-kt
+          kubectl rollout restart deployment/greenhouse-kt -n greenhouse-kt
