@@ -1,0 +1,20 @@
+meta {
+  name: CircuitBreakers
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/actuator/circuitbreakers
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXYucGlnbWVvLmdyZWVuaG91c2UiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTc2ODMyNjYyMSwiaWF0IjoxNzY4MzIzMDIxLCJzY29wZSI6IlJPTEVfVVNFUiJ9.w_iNo0X7iKq8XVxB-tJeLgs1Ca6YBBG9VbBkIj0bovE
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
