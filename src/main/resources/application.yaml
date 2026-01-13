@@ -20,3 +20,9 @@ greenhouse:
   jwt:
     secret: ${GREENHOUSE_JWT_SECRET}
     expiration-seconds: 3600
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health, circuitbreakers'
