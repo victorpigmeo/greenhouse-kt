@@ -6,13 +6,6 @@ spring:
     username: ${GREENHOUSE_DB_USER}
     password: ${GREENHOUSE_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: false
 
 resilience4j:
   circuitbreaker:
