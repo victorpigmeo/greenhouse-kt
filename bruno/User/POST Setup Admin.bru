@@ -1,0 +1,22 @@
+meta {
+  name: POST Setup Admin
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}auth/admin
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "password": "teste123"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

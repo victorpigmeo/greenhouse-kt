@@ -1,6 +1,7 @@
 package dev.pigmeo.greenhouse_kt.config
 
 import dev.pigmeo.greenhouse_kt.infrastructure.errorhandler.SchedulerErrorHandler
+import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableScheduling
@@ -8,9 +9,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
 
 @Configuration
 @EnableScheduling
-class SchedulerConfig(
-    private val customSchedulerErrorHandler: SchedulerErrorHandler
-) {
+@EnableSchedulerLock(defaultLockAtMostFor = "1m")
+class SchedulerConfig{
     @Bean
     fun taskScheduler(): ThreadPoolTaskScheduler {
         val threadPoolTaskScheduler = ThreadPoolTaskScheduler()

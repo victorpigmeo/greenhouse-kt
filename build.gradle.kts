@@ -62,6 +62,10 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
 
+    //ShedLock
+    implementation("net.javacrumbs.shedlock:shedlock-spring:7.5.0")
+    implementation("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:7.5.0")
+
     //Logger
     implementation("io.github.oshai:kotlin-logging-jvm:$loggerVersion")
 

@@ -4,6 +4,8 @@ import dev.pigmeo.greenhouse_kt.application.http_client.EspClient
 import dev.pigmeo.greenhouse_kt.application.mappers.DhtMapper
 import dev.pigmeo.greenhouse_kt.application.payloads.DhtReadEspDtoIn
 import dev.pigmeo.greenhouse_kt.infrastructure.repository.DhtRepository
+import net.javacrumbs.shedlock.core.LockAssert
+import net.javacrumbs.shedlock.spring.annotation.SchedulerLock
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -17,8 +19,11 @@ class DhtScheduler(
 
     @Transactional
     @Scheduled(initialDelay = 0, fixedDelay = 60000)
+    @SchedulerLock(name = "dhtSchedulerLock", lockAtLeastFor = "30s")
     fun getLiveDhtRead() {
         val dhtRead: DhtReadEspDtoIn = this.espClient.getDhtRead()
+
+        LockAssert.assertLocked()
 
         this.dhtRepository.save(this.dhtMapper.mapToDomain(dhtRead))
     }
