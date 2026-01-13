@@ -7,6 +7,8 @@ import dev.pigmeo.greenhouse_kt.application.payloads.GpioDtoOut
 import dev.pigmeo.greenhouse_kt.application.payloads.GpioEspDtoIn
 import dev.pigmeo.greenhouse_kt.application.payloads.GpioEspDtoOut
 import dev.pigmeo.greenhouse_kt.application.payloads.LoginRequest
+import dev.pigmeo.greenhouse_kt.application.payloads.UserDtoIn
+import dev.pigmeo.greenhouse_kt.application.payloads.UserDtoOut
 import org.springframework.aot.hint.annotation.RegisterReflectionForBinding
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -19,7 +21,9 @@ import org.springframework.boot.runApplication
 	GpioEspDtoOut::class,
 	GpioEspDtoIn::class,
 	DhtReadDtoOut::class,
-	DhtReadEspDtoIn::class
+	DhtReadEspDtoIn::class,
+	UserDtoIn::class,
+	UserDtoOut::class
 )
 class GreenhouseKtApplication
 
