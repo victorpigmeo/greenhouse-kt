@@ -5,7 +5,7 @@ metadata:
   namespace: greenhouse-kt
 spec:
   parentRefs:
-    - name: shared-gateway
+    - name: greenhouse-gateway
       namespace: gateway-infra
   hostnames:
     - "greenhouse.local"
