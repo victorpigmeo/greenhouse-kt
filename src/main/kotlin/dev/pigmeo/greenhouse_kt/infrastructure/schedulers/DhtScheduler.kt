@@ -21,9 +21,9 @@ class DhtScheduler(
     @Scheduled(initialDelay = 0, fixedDelay = 60000)
     @SchedulerLock(name = "dhtSchedulerLock", lockAtLeastFor = "30s")
     fun getLiveDhtRead() {
-        val dhtRead: DhtReadEspDtoIn = this.espClient.getDhtRead()
-
         LockAssert.assertLocked()
+
+        val dhtRead: DhtReadEspDtoIn = this.espClient.getDhtRead()
 
         this.dhtRepository.save(this.dhtMapper.mapToDomain(dhtRead))
     }
