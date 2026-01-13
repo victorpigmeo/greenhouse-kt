@@ -58,6 +58,10 @@ dependencies {
     // Postgres
     runtimeOnly("org.postgresql:postgresql")
 
+    //Flyway
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
     //Logger
     implementation("io.github.oshai:kotlin-logging-jvm:$loggerVersion")
 
