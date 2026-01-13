@@ -35,7 +35,7 @@ jobs:
     needs: build
     runs-on: [self-hosted, X64] #This one runs on the ubuntu server
     steps:
-          # TODO: Raspbery as cluster node
+          # TODO: Raspbery as cluster node 
       - name: Create multi-arch manifest
         run: |
           docker buildx imagetools create -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:latest \
