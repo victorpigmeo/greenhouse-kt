@@ -4,10 +4,9 @@ This is the backend that controls the automated ESP32 greenhouse
 
 ## Features
 
-* [WIP] GPIO Crud
-* [WIP] Lights control
-* [WIP] Water pump control
-* [WIP] Fan control
+* GPIO Crud
+* GPIO Control (On/Off & Button behavior)
+* DHT Sensor Reads
 
 ## Stack
 * Kotlin
