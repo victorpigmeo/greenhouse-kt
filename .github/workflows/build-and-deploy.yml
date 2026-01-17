@@ -30,6 +30,11 @@ jobs:
 #        run: |
 #          docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }} .
 #          docker push ${{ secrets.DOCKERHUB_USERNAME }}/greenhouse-kt:${{ matrix.arch }}
+      - name: Detekt
+        run: |
+          chmod +x ./gradlew
+          ./gradlew detekt
+
       - name: Build native image with Gradle
         run: |
           chmod +x ./gradlew

@@ -1,11 +1,12 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
+    kotlin("jvm") version "2.2.20"
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.5.9"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "1.9.25"
     kotlin("kapt") version "2.0.21"
     id("org.graalvm.buildtools.native") version "0.11.3"
+    id("dev.detekt") version "2.0.0-alpha.1"
 }
 
 group = "dev.pigmeo"

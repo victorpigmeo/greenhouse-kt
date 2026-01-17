@@ -20,6 +20,10 @@ greenhouse:
   jwt:
     secret: ${GREENHOUSE_JWT_SECRET}
     expiration-seconds: 3600
+  esp:
+    base-url: http://192.168.18.26:8080/api
+    http-timeout-ms: 3000
+
 
 management:
   endpoints:
